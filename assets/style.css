@@ -1,0 +1,14 @@
+body {
+	background-image:  url("../images/world.jpg");
+}
+
+#gifs-appear-here {
+	display: inline;
+}
+.person {
+	margin-right: 5px;
+	margin-left: 5px;
+}
+h1 {
+	font-size: 80px;
+}

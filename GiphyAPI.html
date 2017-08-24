@@ -1,41 +1,27 @@
-<!DOCTYPE html>
+<!DOCTYPE htm<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <title>Quoth the Giphy</title>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 
 <body>
 	<div class="container">
+	<div class="jumbotron text-center">
+	<h1>Famous People</h1>
+	</div>
     <!-- Rendered Buttons will get Dumped Here  -->
     <div class="btn btn-warning"> 
     <div id="buttons-view"></div>
 	</div>
-    <!-- STEP ONE: Open this file in the browser and click on the buttons. Watch what happens -->
-
-    <!-- STEP TWO: between the dashed lines below
-            * add three more buttons
-            * add a data-person attribute of famous people you know
-            * with a quote said by them -->
-
-    <!-- **************************************** -->
-
-    <!-- YOUR BUTTONS GO HERE!!!!!! Obviously delete this text after you put them between the dashed lines here.  -->
-
-    <!-- **************************************** -->
-
-
-    <!-- STEP THREE: open this file in the browser and click on your buttons. If they don't work, then fix your buttons -->
-
-    <!-- STEP FOUR: go over the JavaScript with your partners, and explain the lines of code to each other. -->
 
     <form id="person-form">
-      <label for="person-input">Add a Person</label>
-      <input type="text" id="person-input"><br>
+      <label for="person-input"><br>Add a Person</label>
+      <input type="text" id="person-input">
 
-      <!-- Button triggers new movie to be added -->
       <input class="btn btn-info" id="add-person" type="submit" value="Search">
     </form>
 
@@ -46,21 +32,15 @@
 </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript">
-
     
 $(document).ready(function() {
-
    	var stars = ["Clint Eastwood", "Michael J Fox", "Harrison Ford", "Judy Garland"];
-
 	function renderButtons() {
-
 	    // Deleting the movies prior to adding new movies
 	    // (this is necessary otherwise you will have repeat buttons)
 	    $("#buttons-view").empty();
-
 	    // Looping through the array of movies
 	    for (var i = 0; i < stars.length; i++) {
-
 		// Then dynamicaly generating buttons for each movie in the array
 		// This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
 		var a = $("<div class='btn btn-success'>" );
@@ -74,9 +54,7 @@ $(document).ready(function() {
 		$("#buttons-view").append(a);
 	    }
   	}
-
 	function displaypersonInfo() {
-
     $("#buttons-view").on("click", ".person", function() {
     $("#gifs-appear-here").empty();
     var person = $(this).attr("add-person");
@@ -89,15 +67,11 @@ $(document).ready(function() {
         })
         .done(function(response) {
           var results = response.data;
-
           for (var i = 0; i < 10; i++) {
             // if(results[i].rating !== "r" && resluts[i].rating !== "pg-13"){
             var gifDiv = $("<div class='gifImage'>");
-
             var rating = results[i].rating;
-
-            var p = $("<p>").text("Rating: " + rating);
-
+            var p = $("<p>").text("Rating: " + rating.toUpperCase());
             var personImage = $("<img>");
             personImage.attr("data-state", "still");
             personImage.attr("src", results[i].images.original_still.url);
@@ -106,18 +80,14 @@ $(document).ready(function() {
             //need the value for "still" and "animate to compare"
             // "data-still".val(still);
             // "data-animate".val(animate); 
-
             gifDiv.prepend(p);
             gifDiv.prepend(personImage);
-
             $("#gifs-appear-here").prepend(gifDiv);
             }
     	});
     });
 }
-
     $("#gifs-appear-here").on("click", "img", function() {
-
       // The attr jQuery method allows us to get or set the value of any attribute on our HTML element
       // create variables for still and animae images
       // If the clicked image's state is still, update its src attribute to what its data-animate value is.
@@ -136,25 +106,19 @@ $(document).ready(function() {
       }
     });
           // }
-
   $("#add-person").on("click", function(event) {
         event.preventDefault();
         // This line grabs the input from the textbox
         var person = $("#person-input").val().trim();
-
         // Adding movie from the textbox to our array
         stars.push(person);
-
         // Calling renderButtons which handles the processing of our person array
         renderButtons();
       });
-
       // Adding a click event listener to all elements with a class of "person"
       $(document).on("click", ".person", displaypersonInfo);
-
       // Calling the renderButtons function to display the intial buttons
       renderButtons();
-
 });
   </script>
 </body>
