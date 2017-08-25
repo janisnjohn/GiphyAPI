@@ -25,10 +25,6 @@
 		    </div>
 	    </div>
 
-<!-- 	                    <div class="form-group">
-                  <label for="bidder-name">Your Name</label>
-                  <input class="form-control" id="bidder-name" type="text">
-                </div> -->
     <!-- Rendered Buttons will get Dumped Here  -->
 		    <div class="col-md-9">
 			    <div class="panel panel-body">
@@ -49,13 +45,11 @@
 $(document).ready(function() {
    	var stars = ["Birds", "lizards", "dogs", "cats", "dinosaurs", "aliens", "mountains", "oceans", "forests", "waterfalls", "beaches", "spaceships"];
 	function renderButtons() {
-	    // Deleting the movies prior to adding new movies
-	    // (this is necessary otherwise you will have repeat buttons)
+
 	    $("#buttons-view").empty();
 	    // Looping through the array of movies
 	    for (var i = 0; i < stars.length; i++) {
 		// Then dynamicaly generating buttons for each movie in the array
-		// This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
 		var a = $("<div class='btn btn-success'>" );
 		// Adding a class of movie to our button
 		a.addClass("person");
@@ -81,7 +75,6 @@ $(document).ready(function() {
         .done(function(response) {
           var results = response.data;
           for (var i = 0; i < 10; i++) {
-            // if(results[i].rating !== "r" && resluts[i].rating !== "pg-13"){
             var gifDiv = $("<div class='gifImage'>");
             var rating = results[i].rating;
             var p = $("<center><p>").text("Rating: " + rating.toUpperCase());
@@ -90,11 +83,7 @@ $(document).ready(function() {
             personImage.attr("src", results[i].images.fixed_height_still.url);
             personImage.attr("data-animate", results[i].images.fixed_height.url);
             personImage.attr("data-still", results[i].images.fixed_height_still.url);
-            personImage.attr("alt", "searchImages");
-            //need the value for "still" and "animate to compare"
-            // "data-still".val(still);
-            // fixed_height_still
-            // "data-animate".val(animate); 
+            personImage.attr("alt", "searchImages"); 
             gifDiv.prepend(p);
             gifDiv.prepend(personImage);
             $("#gifs-appear-here").prepend(gifDiv);
@@ -107,11 +96,6 @@ $(document).ready(function() {
       // create variables for still and animae images
       // If the clicked image's state is still, update its src attribute to what its data-animate value is.
       var state = $(this).attr("data-state");
-      console.log("I'm clicked");
-      // Then, set the image's data-state to animate
-      // make for loop to create images
-      
-      // Else set src to the data-still value
       if (state === "animate") {
         $(this).attr("src", $(this).attr("data-still"));
         $(this).attr("data-state", "still");
@@ -120,7 +104,6 @@ $(document).ready(function() {
         $(this).attr("data-state", "animate");
       }
     });
-          // }
   $("#add-person").on("click", function(event) {
         event.preventDefault();
         // This line grabs the input from the textbox
