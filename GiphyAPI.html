@@ -3,38 +3,51 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Quoth the Giphy</title>
+  <title>Giphy Images</title>
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
      <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 </head>
 
 <body>
 	<div class="container">
-	<div class="jumbotron text-center">
-	<h1>Famous People</h1>
-	</div>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="panel panel-default">
+			    <center><form class="form-group" id="person-form">
+			      <strong><label class="panel-heading" for="person-input">Search Something!</label></strong>
+			      <input class="form-control" type="text" id="person-input">
+			      <button class="btn btn-info" id="add-person" type="submit">Search</button>
+			    </form></center>
+		    </div>
+	    </div>
+
+<!-- 	                    <div class="form-group">
+                  <label for="bidder-name">Your Name</label>
+                  <input class="form-control" id="bidder-name" type="text">
+                </div> -->
     <!-- Rendered Buttons will get Dumped Here  -->
-    <div class="btn btn-warning"> 
-    <div id="buttons-view"></div>
+		    <div class="col-md-9">
+			    <div class="panel panel-body">
+				    <div id="buttons-view"></div>
+				</div>		
+			</div>
+	    </div>
+		<div class="row">
+			  <div id="gifs-appear-here">
+			  </div>
+		</div>
 	</div>
+</body>
 
-    <form id="person-form">
-      <label for="person-input"><br>Add a Person</label>
-      <input type="text" id="person-input">
-
-      <input class="btn btn-info" id="add-person" type="submit" value="Search">
-    </form>
-
-<div class="row">
-  <div id="gifs-appear-here">
-  </div>
-  </div>
-</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <script type="text/javascript">
+</html>
+<script type="text/javascript">
     
 $(document).ready(function() {
-   	var stars = ["Clint Eastwood", "Michael J Fox", "Harrison Ford", "Judy Garland"];
+   	var stars = ["Birds", "lizards", "dogs", "cats", "dinosaurs", "aliens", "mountains", "oceans", "forests", "waterfalls", "beaches", "spaceships"];
 	function renderButtons() {
 	    // Deleting the movies prior to adding new movies
 	    // (this is necessary otherwise you will have repeat buttons)
@@ -71,14 +84,16 @@ $(document).ready(function() {
             // if(results[i].rating !== "r" && resluts[i].rating !== "pg-13"){
             var gifDiv = $("<div class='gifImage'>");
             var rating = results[i].rating;
-            var p = $("<p>").text("Rating: " + rating.toUpperCase());
+            var p = $("<center><p>").text("Rating: " + rating.toUpperCase());
             var personImage = $("<img>");
             personImage.attr("data-state", "still");
-            personImage.attr("src", results[i].images.original_still.url);
-            personImage.attr("data-animate", results[i].images.original.url);
-            personImage.attr("data-still", results[i].images.original_still.url);
+            personImage.attr("src", results[i].images.fixed_height_still.url);
+            personImage.attr("data-animate", results[i].images.fixed_height.url);
+            personImage.attr("data-still", results[i].images.fixed_height_still.url);
+            personImage.attr("alt", "searchImages");
             //need the value for "still" and "animate to compare"
             // "data-still".val(still);
+            // fixed_height_still
             // "data-animate".val(animate); 
             gifDiv.prepend(p);
             gifDiv.prepend(personImage);
@@ -121,6 +136,3 @@ $(document).ready(function() {
       renderButtons();
 });
   </script>
-</body>
-
-</html>

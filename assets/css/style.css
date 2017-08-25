@@ -1,26 +1,16 @@
 body {
 	background-image:  url("../images/world.jpg");
+	color: black;
 }
 
-#gifs-appear-here {
-	display: inline;
-}
 .person {
 	margin-right: 5px;
 	margin-left: 5px;
 }
-h1 {
-	font-size: 100px;
-	color: teal;
+.btn {
+	margin: 5px;
 }
-.jumbotron {
-	background-color: yellow;
-	padding: 20px;
-}
-p {
-	background-color: white;
-	width: 20%;
-}
-label {
-	color: green;
+.gifImage {
+	float: left;
+	margin: 10px; 
 }
