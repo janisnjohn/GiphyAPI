@@ -64,6 +64,7 @@ $(document).ready(function() {
 	function displaypersonInfo() {
     $("#buttons-view").on("click", ".person", function() {
     $("#gifs-appear-here").empty();
+    gifDiv = "";
     var person = $(this).attr("add-person");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
         person + "&api_key=dc6zaTOxFJmzC&limit=10";
